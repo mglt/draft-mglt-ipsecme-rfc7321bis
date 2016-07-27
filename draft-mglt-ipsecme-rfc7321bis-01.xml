@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
+<!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
+<!ENTITY RFC2404 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2404.xml">
+<!ENTITY RFC2405 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2405.xml">
+<!ENTITY RFC2410 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2410.xml">
+<!ENTITY RFC2451 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2451.xml">
+<!ENTITY RFC3566 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3566.xml">
+<!ENTITY RFC3602 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3602.xml">
+<!ENTITY RFC3686 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3686.xml">
+<!ENTITY RFC4106 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4106.xml">
+<!ENTITY RFC4301 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4301.xml">
+<!ENTITY RFC4302 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4302.xml">
+<!ENTITY RFC4303 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4303.xml">
+<!ENTITY RFC4309 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4309.xml">
+<!ENTITY RFC4543 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4543.xml">
+<!ENTITY RFC4835 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4835.xml">
+<!ENTITY RFC7321 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7321.xml">
+<!ENTITY RFC7634 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7634.xml">
+]>
+<?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
+<?rfc strict="yes" ?>
+<?rfc toc="yes"?>
+<?rfc tocdepth="4"?>
+<?rfc symrefs="yes"?>
+<?rfc sortrefs="yes" ?>
+<?rfc compact="yes"?>
+<?rfc subcompact="yes" ?>
+<rfc category="std" docName="draft-mglt-ipsecme-rfc7321bis-00"
+	obsoletes="7321"
+	ipr="trust200902">
+<front>
+
+<title abbrev="ESP and AH Algorithm Requirements">Cryptographic
+Algorithm Implementation Requirements and Usage Guidance for Encapsulating
+Security Payload (ESP) and Authentication Header (AH)</title>
+
+   <author fullname="Daniel Migault" initials="D." surname="Migault">
+      <organization> Ericsson </organization>
+      <address>
+        <postal>
+          <street> 8400 boulevard Decarie </street>
+          <city> Montreal, QC </city>
+          <code> H4P 2N2 </code>
+          <country> Canada </country>
+        </postal>
+        <phone> +1 514-452-2160 </phone>
+        <email> daniel.migault@ericsson.com </email>
+      </address>
+    </author>
+
+<author initials='J.M' surname="Mattsson" fullname='John Mattsson'>
+    <organization abbrev="Ericsson">Ericsson AB</organization>
+    <address>
+        <postal>
+            <street>SE-164 80 Stockholm</street>
+            <country>Sweden</country>
+        </postal>
+        <email>john.mattsson@ericsson.com</email>
+    </address>
+</author>
+
+    <author fullname="Paul Wouters" initials="P." surname="Wouters">
+      <organization>Red Hat</organization>
+      <address>
+        <postal>
+              <street/>
+              <city/>
+              <region/>
+              <code/>
+              <country/>
+        </postal>
+        <email>pwouters@redhat.com</email>
+      </address>
+    </author>
+
+    <author initials="Y." surname="Nir" fullname="Yoav Nir">
+      <organization abbrev="Check Point">Check Point Software Technologies Ltd.</organization>
+      <address>
+        <postal>
+          <street>5 Hasolelim st.</street>
+          <city>Tel Aviv</city>
+          <code>6789735</code>
+          <country>Israel</country>
+        </postal>
+        <email>ynir.ietf@gmail.com</email>
+      </address>
+    </author>
+
+    <author initials='T.' surname='Kivinen' fullname='Tero Kivinen'>
+      <organization>INSIDE Secure</organization>
+      <address>
+        <postal>
+          <street>Eerikinkatu 28</street>
+          <code>FI-00180</code>
+          <city>HELSINKI</city>
+          <country>FI</country>
+        </postal>
+        <email>kivinen@iki.fi</email>
+      </address>
+    </author>
+
+
+<date/>
+
+<abstract>
+
+<t>This document updates the Cryptographic Algorithm Implementation Requirements for ESP
+and AH. The goal of these document is to enable ESP and AH to benefit from cryptography 
+that is up to date while making IPsec interoperable.</t>
+
+<t>This document obsoletes RFC 7321 on the cryptographic recommendations only.</t>
+
+</abstract>
+
+</front>
+
+<middle>
+
+<section title="Introduction">
+
+<t>The Encapsulating Security Payload (ESP) <xref target="RFC4303"/> and
+the Authentication Header (AH) <xref target="RFC4302"/> are the
+mechanisms for applying cryptographic protection to data being sent over
+an IPsec Security Association (SA) <xref target="RFC4301"/>.</t>
+
+
+
+<t>This document provides guidance and recommendations so that ESP and AH can be used with a cryptographic algorithms that are up to date. The challenge of such document is to make sure that over the time IPsec implementations can use secure and up-to-date cryptographic algorithms while keeping IPsec interoperable.</t>
+
+
+     <section title="Updating Algorithm Implementation Requirements and Usage Guidance">
+      <t> The field of cryptography evolves continuously. New stronger
+      algorithms appear and existing algorithms are found to be less
+      secure then originally thought. Therefore, algorithm
+      implementation requirements and usage guidance need to be
+      updated from time to time to reflect the new reality. The
+      choices for algorithms must be conservative to minimize the risk
+      of algorithm compromise. Algorithms need to be suitable for a
+      wide variety of CPU architectures and device deployments ranging
+      from high end bulk encryption devices to small low-power IoT
+      devices.</t>
+
+      <t> The algorithm implementation requirements and usage guidance
+      may need to change over time to adapt to the changing world. For
+      this reason, the selection of mandatory-to-implement algorithms
+      was removed from the main IKEv2 specification and placed in a
+      separate document. </t>
+
+     </section>
+
+
+     <section title="Updating Algorithm Requirement Levels">
+      <t>The mandatory-to-implement algorithm of tomorrow should
+      already be available in most implementations of AH/ESP by the time
+      it is made mandatory. This document attempts to identify and
+      introduce those algorithms for future mandatory-to-implement
+      status. There is no guarantee that the algorithms in use today
+      may become mandatory in the future. Published algorithms are
+      continuously subjected to cryptographic attack and may become
+      too weak or could become completely broken before this document
+      is updated.</t>
+
+      <t> This document only provides recommendations for the
+      mandatory-to-implement algorithms or algorithms too weak that
+      are recommended not to be implemented. As a result, any
+      algorithm listed at the IPsec IANA registry not mentioned in
+      this document MAY be implemented. For clarification and
+      consistency with <xref target="RFC7321"/> an algorithm will be
+      denoted here as MAY only when it has been downgraded.</t>
+
+      <t> Although this document updates the algorithms to keep the
+      AH/ESP communication secure over time, it also aims at providing
+      recommendations so that AH/ESP implementations remain
+      interoperable. AH/ESP interoperability is addressed by an
+      incremental introduction or deprecation of algorithms. In
+      addition, this document also considers the new use cases for
+      AH/ESP deployment, such as Internet of Things (IoT).</t>
+
+      <t> It is expected that deprecation of an algorithm is performed
+      gradually. This provides time for various implementations to
+      update their implemented algorithms while remaining
+      interoperable. Unless there are strong security reasons, an
+      algorithm is expected to be downgraded from MUST to MUST- or
+      SHOULD, instead of MUST NOT. Similarly, an algorithm that has
+      not been mentioned as mandatory-to-implement is expected to be
+      introduced with a SHOULD instead of a MUST.</t>
+
+      <t>The current trend toward Internet of Things and its adoption
+      of AH/ESP requires this specific use case to be taken into
+      account as well. IoT devices are resource constrained devices
+      and their choice of algorithms are motivated by minimizing the
+      footprint of the code, the computation effort and the size of
+      the messages to send. This document indicates "[IoT]" when a
+      specified algorithm is specifically listed for IoT devices.
+      Requirement levels that are marked as "IoT" apply to IoT devices
+      and to server-side implementations that might presumably need to
+      interoperate with them, including any general-purpose VPN
+      gateways.</t>
+      
+     </section>
+
+     <section title="Document Audience">
+      <t>The recommendations of this document mostly target AH/ESP
+      implementers as implementations need to meet both high security
+      expectations as well as high interoperability between various
+      vendors and with different versions. Interoperability requires a
+      smooth move to more secure cipher suites. This may differ from a
+      user point of view that may deploy and configure AH/ESP with only
+      the safest cipher suite.</t>
+
+      <t>This document does not give any recommendations for the use
+      of algorithms, it only gives implementation recommendations for
+      implementations. The use of algorithms by users is dictated by
+      the security policy requirements for that specific user, and are
+      outside the scope of this document.</t>
+
+     </section>
+
+</section> 
+
+<section title="Requirements Language">
+
+<t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+"SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this
+document are to be interpreted as described in <xref
+target="RFC2119"/>.</t>
+
+<t>Following <xref target="RFC4835"/>, we define some additional key
+words:</t>
+
+<t><list style="hanging">
+
+<t hangText="MUST-"> This term means the same as MUST. However, we
+expect that at some point in the future this algorithm will no
+longer be a MUST.</t>
+
+<t hangText="SHOULD+"> This term means the same as SHOULD.
+However, it is likely that an algorithm marked as SHOULD+ will be
+promoted at some future time to be a MUST.</t>
+
+</list></t>
+
+</section>
+
+
+<section title="ESP Encryption Algorithms" anchor="sec-encr">
+
+        <texttable anchor="tbl_enc" suppress-title="true">
+          <ttcol align="left">Name</ttcol>
+          <ttcol align="left">Status</ttcol>
+          <ttcol>AEAD</ttcol>
+          <ttcol align="left">Comment</ttcol>
+          <c>NULL</c><c>MUST</c><c>No/Yes</c><c>[RFC2410]</c>
+          <c>AES-CBC</c><c>MUST-</c><c>No</c><c>[1] [RFC3602]</c>
+          <c>AES-GCM with a 16 octet ICV</c><c>MUST</c><c>Yes</c><c>[1] [RFC4106]</c>
+          <c>CHACHA20_POLY1305</c><c>MAY+</c><c>Yes</c> <c>[RFC7634]</c>
+          <c>AES-CCM_16</c><c>SHOULD</c><c>Yes</c><c>[1][IoT] [RFC4309]</c>
+          <c>AES-CCM_8</c><c>SHOULD</c><c>Yes</c><c>[1][IoT] [RFC4309]</c>
+          <c>3DES</c><c>SHOULD NOT</c><c>No</c><c>[RFC2451]</c>
+          <c>DES</c><c>MUST NOT</c><c>No</c><c>[RFC2405]</c>
+
+          <c>DES_IV64</c><c>MUST NOT</c><c>No</c><c>[RFC2407]</c>
+          <c>RC5</c><c>MUST NOT</c><c>No</c><c>[RFC2407]</c>
+          <c>IDEA</c><c>MUST NOT</c><c>No</c><c>[RFC2407]</c>
+          <c>CAST</c><c>MUST NOT</c><c>No</c><c>[RFC2407]</c>
+          <c>BLOWFISH</c><c>MUST NOT</c><c>No</c><c>[RFC2407]</c>
+          <c>3IDEA</c><c>MUST NOT</c><c>No</c><c>[RFC2407]</c>
+          <c>DES_IV32</c><c>MUST NOT</c><c>No</c><c>[RFC4312]</c>
+          <c>RC4</c><c>MUST NOT</c><c>No</c><c>[RFC2407]</c>
+          <c>AES-CTR</c><c>MAY</c><c>No</c><c>[RFC3686]</c>
+          <c>AES-CCM_12</c><c>MAY</c><c>Yes</c><c>[1][RFC4309]</c>
+          <c>AES-GCM_8</c><c>MAY</c><c>Yes</c><c>[RFC4106]</c>
+          <c>AES-GCM_12</c><c>MAY</c><c>Yes</c><c>[RFC4106]</c>
+          <c>SEED_CBC</c><c>MAY</c><c>No</c><c>[RFC4196]</c>
+          <c>CAMELLIA</c><c>MAY</c><c>No</c><c>[RFC4312]</c>
+          <c>NULL_AUTH_AES-GMAC</c><c>MAY</c><c>No</c><c>[RFC4543]</c>
+
+
+
+<c>ENCR_DES_IV64           </c><c> MUST NOT   </c><c> No     </c><c> UNSPECIFIED </c>
+<c>ENCR_DES                 </c><c> MUST NOT   </c><c> No     </c><c> [RFC2405]   </c>
+<c>ENCR_3DES                </c><c> SHOULD NOT </c><c> No     </c><c> [RFC2451]   </c>
+<c>ENCR_RC5                 </c><c> MUST NOT   </c><c> No     </c><c> [RFC2451]   </c>
+<c>ENCR_IDEA                </c><c> MUST NOT   </c><c> No     </c><c> [RFC2451]   </c>
+<c>ENCR_CAST                </c><c> MUST NOT   </c><c> No     </c><c> [RFC2451]   </c>
+<c>ENCR_BLOWFISH            </c><c> MUST NOT   </c><c> No     </c><c> [RFC2451]   </c>
+<c>ENCR_3IDEA               </c><c> MUST NOT   </c><c> No     </c><c> UNSPECIFIED </c>
+<c>ENCR_DES_IV32           </c><c> MUST NOT   </c><c> No     </c><c> UNSPECIFIED </c>
+<c>ENCR_NULL                </c><c> MUST       </c><c> No     </c><c> [RFC2410]   </c>
+<c>ENCR_AES_CBC            </c><c> MUST -     </c><c> No     </c><c> [RFC3602][1] </c>
+<c>ENCR_AES_CTR            </c><c> MAY        </c><c> No     </c><c> [RFC3686]   </c>
+<c>ENCR_AES_CCM_8         </c><c> SHOULD     </c><c> Yes    </c><c> [RFC4309][1][IoT] </c>
+<c>ENCR_AES_CCM_12        </c><c> MAY        </c><c> Yes    </c><c> [RFC4309]   </c>
+<c>ENCR_AES_CCM_16        </c><c> SHOULD     </c><c> Yes    </c><c> [RFC4309][1]</c>
+<c>AES-GCM with a 8 octet ICV </c><c> MAY       </c><c> Yes    </c><c> [RFC4106] </c>
+<c>AES-GCM with a 12 octet ICV </c><c> MAY      </c><c> Yes    </c><c> [RFC4106] </c>
+<c>AES-GCM with a 16 octet ICV </c><c> MUST     </c><c> Yes    </c><c> [RFC4106][1] </c>
+<c>ENCR_NULL_AUTH_AES_GMAC </c><c> MAY      </c><c> No     </c><c> [RFC4543]  </c>
+<c>Reserved for IEEE P1619 XTS-AES </c><c> MUST NOT  </c><c> No     </c><c> [Matt_Ball] </c>
+<c>ENCR_CAMELLIA_CBC         </c><c> MAY      </c><c> No     </c><c> [RFC5529] </c>
+<c>ENCR_CAMELLIA_CTR         </c><c> MAY      </c><c> No     </c><c> [RFC5529] </c><c>
+<c>ENCR_CAMELLIA_CCM with an 8-octet ICV    </c><c> MAY      </c><c> No     </c><c>[RFC5529]  </c>
+<c>ENCR_CAMELLIA_CCM with a 12-octet ICV    </c><c> MAY      </c><c> No     </c><c>[RFC5529]  </c>
+<c>ENCR_CAMELLIA_CCM with a 16-octet ICV    </c><c> MAY      </c><c> No     </c><c>[RFC5529]  </c>
+<c>ENCR_CHACHA20_POLY1305                   </c><c> MAY+     </c><c> Yes    </c><c>[RFC7634]  </c>  
+         
+          <postamble>
+          [1] - This requirement level is for 128-bit keys. 256-bit keys are at SHOULD.
+          192-bit keys can safely be ignored.
+          [IoT] - This requirement is for interoperability with IoT.           
+            </postamble>
+        </texttable>
+
+         <t>IPsec sessions may have very long life time, and carry multiple packets, 
+         so there is a need to move 256-bit keys in the long term. For that purpose 
+         requirement level is for 128 bit keys and 256 bit keys are at SHOULD 
+         (when applicable). In that sense 256 bit keys status has been raised from 
+         MAY in RFC7321 to SHOULD.
+         </t>   
+
+         <t>NULL status remains to MUST to enable the use of ESP with only authentication. 
+         It status is expected to remain MUST by protocol requirements. In addition, 
+         the use of ESP_NULL is preferred over AH due to NAT traversal.</t> 
+         <t>ENCR_AES_CBC status remains to MUST in order to enable interoperability 
+         between  implementation that followed RFC7321.</t>
+         <t>AES-GCM status has been updated from SHOULD+ to MUST in order to favor 
+         the use of authenticated encryption and AEAD algorithms.
+         The main motivation for adopting AES-GCM for ESP is performance 
+         as well as key longevity - compared to AES-CBC for example. This resulted in 
+         AES-GCM widely implemented for ESP.</t>
+         <t> ENCR_CHACHA20_POLY1305 was not ready to be considered at the time of RFC7321.
+         It has been recommended by the CRFG and others as an alternative to AES and AES-GCM. 
+         It is also being standardized for IPsec for the same reasons. At the time of writing, 
+         there were not enough ESP implementations of ENCR_CHACHA20_POLY1305 to be able to 
+         introduce it at the SHOULD+ level.</t>
+         <t>ENCR_AES_CCM_8-16 status have been raised from MAY to SHOULD. This document 
+         considers it SHOULD be implemented in order to be able to interact with Internet
+         of Things devices. As this case is not a general use case for VPNs, its status is
+         expected to remain to SHOULD.</t> 
+         <t>ENCR_3DES status has been downgraded from  MAY in RFC7321 to SHOULD NOT. 
+         However, ENCR_CHACHA20_POLY1305 seems a more modern approach alternative to AES than 3DES
+         and so it expected to be favored over 3DES.</t>
+         <t>ENCR_DES status remains to MUST NOT.</t> 
+
+<!--
+<figure><artwork>
+Requirement    Authenticated Encryption Algorithm
+SHOULD+        AES-GCM with a 16 octet ICV [RFC4106]
+MAY            AES-CCM [RFC4309]
+</artwork></figure>
+
+<figure><artwork>
+Requirement    Encryption Algorithm
+MUST           NULL [RFC2410] 
+MUST           AES-CBC [RFC3602]
+MAY            AES-CTR [RFC3686]
+MAY            TripleDES-CBC [RFC2451]
+MUST NOT       DES-CBC [RFC2405]
+</artwork></figure>
+-->
+
+</section>
+
+<section title="ESP and AH Authentication Algorithms">
+
+<t>Encryption without authentication MUST NOT be used. As a result, authentication algorithm recommendations in this section are targeting two types of communications: Firstly authenticated only communications without encryption -- such communications can be ESP with NULL encryption or AH communications.  
+Secondly, communications that are encrypted with non AEAD encryption algorithms mentioned above. In this case, they MUST be combined with an authentication algorithm.</t>
+
+   
+<texttable anchor="tbl_alg4" suppress-title="true">
+          <ttcol align="left">Name</ttcol>
+          <ttcol align="left">Status</ttcol>
+          <ttcol align="left">Comment</ttcol>
+          <c>AES-128-GMAC</c><c>MUST</c><c>[RFC4553]</c>
+          <c>AES-256-GMAC</c><c>SHOULD</c><c>[RFC4553]</c>
+          <c>HMAC_SHA2_256_128</c><c>MUST</c><c>[RFC4868]</c>
+          <c>HMAC_SHA2_512_256</c><c>SHOULD</c><c>[RFC4868]</c>
+          <c>HMAC_SHA1_96</c><c>MUST-</c><c>[RFC2404]</c>
+          <c>AES_XCBC_96</c><c>SHOULD</c><c>[IoT] [RFC3566]</c>
+          <c>NULL</c><c>MUST NOT</c><c>only acceptable for authenticated encryption [RFC4303]</c>
+                 
+          <c>MD5</c><c>MUST NOT</c><c>[RFC2407]</c>
+          <c>SHA</c><c>MUST NOT</c><c>[RFC2407]</c>
+          <c>DES</c><c>MUST NOT</c><c>[RFC2407]</c>
+          <c>RIPEMD</c><c>MAY</c><c>[RFC2407]</c>
+          <c>RSA</c><c>MAY</c><c>[RFC2407]</c>
+          <c>AES-192-GMAC</c><c>MAY</c><c>[RFC4553]</c>
+
+<c>NONE                 </c><c> MUST     </c><c> [RFC7296]  AEAD        </c>
+<c>AUTH_HMAC_MD5_96  </c><c> MUST NOT </c><c> [RFC2403][RFC7296] </c>
+<c>AUTH_HMAC_SHA1_96 </c><c> MUST-    </c><c> [RFC2404][RFC7296] </c>
+<c>AUTH_DES_MAC       </c><c> MUST NOT </c><c> [UNSPECIFIED]      </c>
+<c>AUTH_KPDK_MD5      </c><c> MUST NOT </c><c> [UNSPECIFIED]      </c>
+<c>AUTH_AES_XCBC_96  </c><c> SHOULD   </c><c> [RFC3566][RFC7296] [IoT] </c>
+<c>AUTH_HMAC_MD5_128 </c><c> MUST NOT </c><c> [RFC4595]          </c>
+<c>AUTH_HMAC_SHA1_160</c><c> MUST NOT </c><c> [RFC4595] </c>
+<c>AUTH_AES_CMAC_96  </c><c> MAY    </c><c> [RFC4494] </c>
+<c>AUTH_AES_128_GMAC </c><c> MAY    </c><c> [RFC4543] </c>
+<c>AUTH_AES_192_GMAC </c><c> MAY    </c><c> [RFC4543] </c>
+<c>AUTH_AES_256_GMAC </c><c> MAY    </c><c> [RFC4543] </c>
+<c>AUTH_HMAC_SHA2_256_128 </c><c> MUST   </c><c>[RFC4868]  </c>
+<c>AUTH_HMAC_SHA2_384_192 </c><c> MAY    </c><c> [RFC4868] </c>
+<c>AUTH_HMAC_SHA2_512_256 </c><c> SHOULD </c><c> [RFC4868] </c>
+
+
+          <postamble> 
+          [IoT] - This requirement is for interoperability with IoT 
+            </postamble>
+        </texttable>
+
+
+        <t>HMAC_SHA2_256_128 was not mentioned in RFC7321, as no SHA2 based authentication
+        was mentioned. HMAC_SHA2_256_128 SHOULD be implemented  in order to replace HMAC_SHA1_96.</t>
+        <t>HMAC_SHA2_512_256 SHOULD be implemented as a future replacement of 
+        HMAC_SHA2_256_128 or when stronger security is required. This value has been preferred
+        to HMAC_SHA2_384, as the overhead of HMAC_SHA2_512 is negligible.</t>
+        <t> HMAC_SHA1_96 status has been downgraded from MUST in RFC7321 to MUST- as 
+        there is an industry-wide trend to deprecate its usage.</t>
+        <t> AES-XCBC is only recommended in the scope of IoT, as Internet of Things 
+        deployments tend to prefer AES based HMAC functions in  order to avoid
+        implementing SHA2. For the wide VPN deployment, as it has not been widely adopted,
+        it has been downgraded from SHOULD in RFC4307 to MAY.</t>
+        <t>AES-128-GMAC status is being upgraded from SHOULD+ to MUST in order to guarantee
+        interoperability between implementation that are following RFC7321 and this document.
+        In fact HMAC-SHA1-96 was used to be the algorithm that provided interoperability
+        and it has been downgraded.</t> 
+        <t>AES-256-GMAC was not mentioned in RFC7321. Its status has been set to SHOULD 
+        as as a future replacement of AES-128-GMAC or when stronger security is required.</t> 
+        <t>NULL has been downgraded from MAY in RFC7321 to MUST NOT. The only reason NULL 
+        is acceptable is when authenticated encryption algorithms are selected from 
+        <xref target="sec-encr"/>. In any other case, NULL MUST NOT be selected. As ESP and
+        AH provides both authentication, one may be tempted to combine these protocol to 
+        provide authentication. As mentionned by RFC7321, it is NOT RECOMMENDED to use 
+        ESP with NULL authentication - with non authenticated encryption - in conjunction
+        with AH; some configurations of this combination of services have been shown to be
+        insecure <xref target="PD10"/>. In addition, ESP NULL authentication cannot be
+        combined with ESP NULL encryption.</t>
+
+       <!--
+<figure><artwork>
+Requirement    Authentication Algorithm (notes)
+MUST           HMAC-SHA1-96 [RFC2404]
+SHOULD+        AES-GMAC with AES-128 [RFC4543]
+SHOULD         AES-XCBC-MAC-96 [RFC3566]
+MAY            NULL [RFC4303]
+</artwork></figure>
+
+-->
+
+</section>
+
+<section title="ESP and AH Compression Algorithms">
+<texttable anchor="tbl_alg3" suppress-title="true">
+          <ttcol align="left">Name</ttcol>
+          <ttcol align="left">Status</ttcol>
+          <ttcol align="left">Comment</ttcol>
+          <c>IPCOMP_OUI</c><c>MUST NOT</c><c>UNSPECIFIED</c>
+          <c>IPCOMP_DEFLATE</c><c>MAY</c><c>[RFC2393]</c>
+          <c>IPCOMP_LZS</c><c>MAY</c><c>[RFC2395]</c>
+          <c>IPCOMP_LZJH</c><c>MAY</c><c>[RFC3051]</c>
+          <postamble> 
+          [IoT] - This requirement is for interoperability with IoT 
+            </postamble>
+        </texttable>
+
+</section>
+
+<section title="Summary of Changes from RFC 7321">
+<t>I think that would be interesting to document and summarize the changes.</t>
+
+</section>
+
+<!--
+<section title="Summary of Changes from RFC 4835">
+<t>The following is a summary of the changes from RFC 4835.</t>
+<figure><artwork>
+Old            New
+Requirement    Requirement      Algorithm (notes)
+MAY            SHOULD+          AES-GCM with a 16 octet ICV [RFC4106]
+MAY            SHOULD+          AES-GMAC with AES-128 [RFC4543]
+MUST-          MAY              TripleDES-CBC [RFC2451]
+SHOULD NOT     MUST NOT         DES-CBC [RFC2405]
+SHOULD+        SHOULD           AES-XCBC-MAC-96 [RFC3566] 
+SHOULD         MAY              AES-CTR [RFC3686]
+</artwork></figure>
+</section>
+-->
+
+
+<section anchor="Acknowledgements" title="Acknowledgements">
+
+</section>
+
+<section anchor="IANA" title="IANA Considerations">
+
+<t>None.</t>
+
+</section>
+
+<section anchor="Security" title="Security Considerations">
+
+</section>
+
+</middle>
+
+<back>
+
+<references title="Normative References">
+  
+&RFC2119;
+&RFC4301;
+&RFC4302;
+&RFC4303;
+&RFC7634;
+&RFC7321;
+
+</references>
+
+<references title="Informative References">
+
+&RFC2404;
+&RFC2405;
+&RFC2410;
+&RFC2451;
+&RFC3566;
+&RFC3602;
+&RFC3686;
+&RFC4106;
+&RFC4309;
+&RFC4543;
+&RFC4835;
+
+<reference anchor="PD10">
+<front>
+<title>On the (in)security of IPsec in MAC-then-encrypt
+configurations (ACM Conference on Computer and Communications
+Security, ACM CCS)</title>
+<author initials="K." surname="Paterson">
+<organization>P</organization>
+</author>
+<author initials="J." surname="Degabriele">
+<organization/>
+</author>
+<date year="2010"/>
+</front>
+</reference>
+
+
+
+
+</references>
+
+</back>
+</rfc>
