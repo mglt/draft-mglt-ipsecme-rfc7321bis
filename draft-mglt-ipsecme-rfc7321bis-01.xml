@@ -26,7 +26,7 @@
 <?rfc sortrefs="yes" ?>
 <?rfc compact="yes"?>
 <?rfc subcompact="yes" ?>
-<rfc category="std" docName="draft-mglt-ipsecme-rfc7321bis-00"
+<rfc category="std" docName="draft-mglt-ipsecme-rfc7321bis-01"
 	obsoletes="7321"
 	ipr="trust200902">
 <front>
@@ -274,32 +274,32 @@ promoted at some future time to be a MUST.</t>
           <ttcol align="left">Status</ttcol>
           <ttcol>AEAD</ttcol>
           <ttcol align="left">Comment</ttcol>
-<c>ENCR_DES_IV64           </c><c> MUST NOT   </c><c> No     </c><c> UNSPECIFIED </c>
-<c>ENCR_DES                 </c><c> MUST NOT   </c><c> No     </c><c> [RFC2405]   </c>
-<c>ENCR_3DES                </c><c> SHOULD NOT </c><c> No     </c><c> [RFC2451]   </c>
-<c>ENCR_RC5                 </c><c> MUST NOT   </c><c> No     </c><c> [RFC2451]   </c>
-<c>ENCR_IDEA                </c><c> MUST NOT   </c><c> No     </c><c> [RFC2451]   </c>
-<c>ENCR_CAST                </c><c> MUST NOT   </c><c> No     </c><c> [RFC2451]   </c>
-<c>ENCR_BLOWFISH            </c><c> MUST NOT   </c><c> No     </c><c> [RFC2451]   </c>
-<c>ENCR_3IDEA               </c><c> MUST NOT   </c><c> No     </c><c> UNSPECIFIED </c>
-<c>ENCR_DES_IV32           </c><c> MUST NOT   </c><c> No     </c><c> UNSPECIFIED </c>
-<c>ENCR_NULL                </c><c> MUST       </c><c> No     </c><c> [RFC2410]   </c>
-<c>ENCR_AES_CBC            </c><c> MUST -     </c><c> No     </c><c> [RFC3602][1] </c>
-<c>ENCR_AES_CTR            </c><c> MAY        </c><c> No     </c><c> [RFC3686]   </c>
-<c>ENCR_AES_CCM_8         </c><c> SHOULD     </c><c> Yes    </c><c> [RFC4309][1][IoT] </c>
-<c>ENCR_AES_CCM_12        </c><c> MAY        </c><c> Yes    </c><c> [RFC4309]   </c>
-<c>ENCR_AES_CCM_16        </c><c> SHOULD     </c><c> Yes    </c><c> [RFC4309][1]</c>
-<c>AES-GCM with a 8 octet ICV </c><c> MAY       </c><c> Yes    </c><c> [RFC4106] </c>
-<c>AES-GCM with a 12 octet ICV </c><c> MAY      </c><c> Yes    </c><c> [RFC4106] </c>
-<c>AES-GCM with a 16 octet ICV </c><c> MUST     </c><c> Yes    </c><c> [RFC4106][1] </c>
+<c>ENCR_DES_IV64     </c><c> MUST&nbsp;NOT   </c><c> No     </c><c> UNSPECIFIED </c>
+<c>ENCR_DES          </c><c> MUST&nbsp;NOT   </c><c> No     </c><c> [RFC2405]   </c>
+<c>ENCR_3DES         </c><c> SHOULD&nbsp;NOT </c><c> No     </c><c> [RFC2451]   </c>
+<c>ENCR_RC5          </c><c> MUST&nbsp;NOT   </c><c> No     </c><c> [RFC2451]   </c>
+<c>ENCR_IDEA         </c><c> MUST&nbsp;NOT   </c><c> No     </c><c> [RFC2451]   </c>
+<c>ENCR_CAST         </c><c> MUST&nbsp;NOT   </c><c> No     </c><c> [RFC2451]   </c>
+<c>ENCR_BLOWFISH     </c><c> MUST&nbsp;NOT   </c><c> No     </c><c> [RFC2451]   </c>
+<c>ENCR_3IDEA        </c><c> MUST&nbsp;NOT   </c><c> No     </c><c> UNSPECIFIED </c>
+<c>ENCR_DES_IV32     </c><c> MUST&nbsp;NOT   </c><c> No     </c><c> UNSPECIFIED </c>
+<c>ENCR_NULL         </c><c> MUST       </c><c> No     </c><c> [RFC2410]   </c>
+<c>ENCR_AES_CBC      </c><c> MUST       </c><c> No     </c><c> [RFC3602][1] </c>
+<c>ENCR_AES_CTR      </c><c> MAY        </c><c> No     </c><c> [RFC3686]   </c>
+<c>ENCR_AES_CCM_8    </c><c> SHOULD     </c><c> Yes    </c><c> [RFC4309][1][IoT] </c>
+<c>ENCR_AES_CCM_12   </c><c> MAY        </c><c> Yes    </c><c> [RFC4309]   </c>
+<c>ENCR_AES_CCM_16   </c><c> SHOULD     </c><c> Yes    </c><c> [RFC4309][1]</c>
+<c>AES-GCM_8         </c><c> MAY       </c><c> Yes    </c><c> [RFC4106] </c>
+<c>AES-GCM_12        </c><c> MAY      </c><c> Yes    </c><c> [RFC4106] </c>
+<c>AES-GCM_16        </c><c> MUST     </c><c> Yes    </c><c> [RFC4106][1] </c>
 <c>ENCR_NULL_AUTH_AES_GMAC </c><c> MAY      </c><c> No     </c><c> [RFC4543]  </c>
-<c>Reserved for IEEE P1619 XTS-AES </c><c> MUST NOT  </c><c> No     </c><c> [Matt_Ball] NON IPSEC</c>
-<c>ENCR_CAMELLIA_CBC         </c><c> MAY      </c><c> No     </c><c> [RFC5529] </c>
-<c>ENCR_CAMELLIA_CTR         </c><c> MAY      </c><c> No     </c><c> [RFC5529] </c>
-<c>ENCR_CAMELLIA_CCM with an 8-octet ICV    </c><c> MAY      </c><c> No     </c><c>[RFC5529]  </c>
-<c>ENCR_CAMELLIA_CCM with a 12-octet ICV    </c><c> MAY      </c><c> No     </c><c>[RFC5529]  </c>
-<c>ENCR_CAMELLIA_CCM with a 16-octet ICV    </c><c> MAY      </c><c> No     </c><c>[RFC5529]  </c>
-<c>ENCR_CHACHA20_POLY1305                   </c><c> MAY+     </c><c> Yes    </c><c>[RFC7634]  </c>  
+<c>Reserved for IEEE P1619 XTS-AES </c><c> MUST&nbsp;NOT  </c><c> No     </c><c> [Matt_Ball] Non IPsec</c>
+<c>ENCR_CAMELLIA_CBC    </c><c> MAY      </c><c> No     </c><c> [RFC5529] </c>
+<c>ENCR_CAMELLIA_CTR    </c><c> MAY      </c><c> No     </c><c> [RFC5529] </c>
+<c>ENCR_CAMELLIA_CCM_8  </c><c> MAY      </c><c> No     </c><c>[RFC5529]  </c>
+<c>ENCR_CAMELLIA_CCM_12 </c><c> MAY      </c><c> No     </c><c>[RFC5529]  </c>
+<c>ENCR_CAMELLIA_CCM_16 </c><c> MAY      </c><c> No     </c><c>[RFC5529]  </c>
+<c>ENCR_CHACHA20_POLY1305 </c><c> SHOULD     </c><c> Yes    </c><c>[RFC7634]  </c>  
          
           <postamble>
           [1] - This requirement level is for 128-bit keys. 256-bit keys are at SHOULD.
@@ -327,7 +327,7 @@ promoted at some future time to be a MUST.</t>
 
 	 <t>Similarly IANA also allocated code points for algorithms that are
 	 not expected to be used to secure IPsec communications. Such algorithms
-	 are noted as NON IPSEC. As a result, these algorithms MUST NOT be implemented.</t>
+	 are noted as Non IPsec. As a result, these algorithms MUST NOT be implemented.</t>
 	 
 	 <t>ENCR_DES_IV64, ENCR_DES, ENCR_RC5, ENCR_IDEA, ENCR_CAST, ENCR_BLOWFISH 
          are obsolete algorithm that presents some weakness to differential cryptanalysis. 
@@ -347,8 +347,7 @@ promoted at some future time to be a MUST.</t>
          It is expected to remain MUST by protocol requirements. In addition, 
          the use of ESP_NULL is preferred over AH due to NAT traversal.</t> 
         
-	<t>ENCR_AES_CBC status has been updated from MUST in <xref target="RFC7321"/>
-         to MUST -. 
+	<t>ENCR_AES_CBC status remains to MUST. 
 	ENCR_AES_CBC MUST be implemented in order to enable interoperability 
         between  implementation that followed RFC7321. However, there is a trend for
 	the industry to move to AEAD encryption, and the overhead of ENCR_AES_CBC
@@ -357,7 +356,7 @@ promoted at some future time to be a MUST.</t>
         
 	<t>ENCR_AES_CTR status was set to MAY <xref target="RFC7321"/>, and 
 	remains to MAY. ENCR_AES_CTR, does not present specific known 
-	vulnerabilities. ON the other hand,  it is not especially considered for 
+	vulnerabilities. On the other hand,  it is not especially considered for 
 	interoperability, and is not AEAD. As a result, it implementation remains
 	optional.</t> 
 		
@@ -369,11 +368,11 @@ promoted at some future time to be a MUST.</t>
 	is not a general use case for VPNs, their status remains optional and MAY be 
 	implemented.</t>
 		 
-	<t>ENCR_AES-GCM with 16 byte ICV status has been updated from SHOULD+ to MUST
+	<t>ENCR_AES-GCM_16 status has been updated from SHOULD+ to MUST
 	in order to favor the use of authenticated encryption and AEAD algorithms.
          The main motivation for adopting AES-GCM for ESP is performance 
          as well as key longevity - compared to AES-CBC for example. This resulted in 
-         AES-GCM widely implemented for ESP. ENCR_AES_GCM with 12 or 16 byte ICV are not
+         AES-GCM widely implemented for ESP. ENCR_AES_GCM_12 or ENCR_AES_GCM_8 are not
 	 mentioned in <xref target="RFC7321"/>, and their status remains optional and MAY 
 	 be implemented.</t>
          
@@ -425,14 +424,14 @@ Secondly, communications that are encrypted with non AEAD encryption algorithms 
           <ttcol align="left">Name</ttcol>
           <ttcol align="left">Status</ttcol>
           <ttcol align="left">Comment</ttcol>
-<c>AUTH_NONE                 </c><c> MUST / MUST NOT     </c><c> [RFC7296]  AEAD        </c>
-<c>AUTH_HMAC_MD5_96  </c><c> MUST NOT </c><c> [RFC2403][RFC7296] </c>
+<c>AUTH_NONE                 </c><c> MUST / MUST&nbsp;NOT     </c><c> [RFC7296]  AEAD        </c>
+<c>AUTH_HMAC_MD5_96  </c><c> MUST&nbsp;NOT </c><c> [RFC2403][RFC7296] </c>
 <c>AUTH_HMAC_SHA1_96 </c><c> MUST-    </c><c> [RFC2404][RFC7296] </c>
-<c>AUTH_DES_MAC       </c><c> MUST NOT </c><c> [UNSPECIFIED]      </c>
-<c>AUTH_KPDK_MD5      </c><c> MUST NOT </c><c> [UNSPECIFIED]      </c>
+<c>AUTH_DES_MAC       </c><c> MUST&nbsp;NOT </c><c> [UNSPECIFIED]      </c>
+<c>AUTH_KPDK_MD5      </c><c> MUST&nbsp;NOT </c><c> [UNSPECIFIED]      </c>
 <c>AUTH_AES_XCBC_96  </c><c> SHOULD   </c><c> [RFC3566][RFC7296] [IoT] </c>
-<c>AUTH_HMAC_MD5_128 </c><c> MUST NOT </c><c> [RFC4595]          </c>
-<c>AUTH_HMAC_SHA1_160</c><c> MUST NOT </c><c> [RFC4595] NON IPSEC</c>
+<c>AUTH_HMAC_MD5_128 </c><c> MUST&nbsp;NOT </c><c> [RFC4595] Non IPsec </c>
+<c>AUTH_HMAC_SHA1_160</c><c> MUST&nbsp;NOT </c><c> [RFC4595] Non IPsec</c>
 <c>AUTH_AES_CMAC_96  </c><c> MAY    </c><c> [RFC4494] </c>
 <c>AUTH_AES_128_GMAC </c><c> MUST    </c><c> [RFC4543] </c>
 <c>AUTH_AES_192_GMAC </c><c> MAY    </c><c> [RFC4543] </c>
@@ -457,16 +456,16 @@ Secondly, communications that are encrypted with non AEAD encryption algorithms 
         insecure <xref target="PD10"/>. In addition, ESP NULL authentication cannot be
         combined with ESP NULL encryption.</t>
         
-	<t>AUTH_HMAC_MD5_96,AUTH_KPDK_MD5 and AUTH_HMAC_MD5_128 were not mentioned in RFC7321.
+	<t>AUTH_HMAC_MD5_96, AUTH_KPDK_MD5 were not mentioned in RFC7321.
 	As MD5 is known to be vulnerable to collisions, it MUST NOT be used. </t>
 
-        <t> HMAC_SHA1_96 status has been downgraded from MUST in RFC7321 to MUST- as 
+        <t> AUTH_HMAC_SHA1_96 status has been downgraded from MUST in RFC7321 to MUST- as 
         there is an industry-wide trend to deprecate its usage.</t>
 		
 	<t>AUTH_DES_MAC was not mentioned in RFC7321. As DES is known to be vulnerable, 
 	it MUST NOT be used.</t>
 		
-	<t>AUTH_AES-XCBC is only recommended in the scope of IoT, as Internet of Things 
+	<t>AUTH_AES_XCBC_96 is only recommended in the scope of IoT, as Internet of Things 
         deployments tend to prefer AES based HMAC functions in  order to avoid
         implementing SHA2. For the wide VPN deployment, as it has not been widely adopted,
         it has been downgraded from SHOULD in RFC4307 to MAY.</t>
@@ -475,24 +474,25 @@ Secondly, communications that are encrypted with non AEAD encryption algorithms 
 	but it has not been widely been used. As a result, its implementation remains optional
 	and it MAY be implemented. </t>
 
-        <t>AUTH_AES-128-GMAC status is being upgraded from SHOULD+ to MUST in order to guarantee
+        <t>AUTH_AES_128_GMAC status is being upgraded from SHOULD+ to MUST in order to guarantee
         interoperability between implementation that are following RFC7321 and this document.
-        In fact HMAC-SHA1-96 was used to be the algorithm that provided interoperability
+        In fact AUTH_HMAC_SHA1_96 was used to be the algorithm that provided interoperability
         and it has been downgraded.</t> 
 		
-	<t>AUTH_AES-192-GMAC was not mentioned in RFC7321. It is not widely used, and 
-	AUTH_AES-256 would be preferred in case AUTH_AES-128 requires stronger 
+	<t>AUTH_AES_192_GMAC was not mentioned in RFC7321. It is not widely used, and 
+	AUTH_AES_256_GMAC would be preferred in case AUTH_AES_128_GMAC requires stronger 
 	security. As a result it remains optional and MAY be implemented.</t>
 
-	<t>AES-256-GMAC was not mentioned in RFC7321. Its status has been set to SHOULD 
-        as as a future replacement of AES-128-GMAC or when stronger security is required.</t> 
+	<t>AUTH_AES_256_GMAC was not mentioned in RFC7321. Its status has been set to SHOULD 
+        as as a future replacement of AUTH_AES_128_GMAC or when stronger security is required.</t> 
 	
-        <t>HMAC_SHA2_256_128 was not mentioned in RFC7321, as no SHA2 based authentication
-        was mentioned. HMAC_SHA2_256_128 SHOULD be implemented  in order to replace HMAC_SHA1_96.</t>
+        <t>AUTH_HMAC_SHA2_256_128 was not mentioned in RFC7321, as no SHA2 based authentication
+        was mentioned. AUTH_HMAC_SHA2_256_128 SHOULD be implemented  in order to 
+        replace AUTH_HMAC_SHA1_96.</t>
 
-        <t>HMAC_SHA2_512_256 SHOULD be implemented as a future replacement of 
-        HMAC_SHA2_256_128 or when stronger security is required. This value has been preferred
-        to HMAC_SHA2_384, as the overhead of HMAC_SHA2_512 is negligible.</t>
+        <t>AUTH_HMAC_SHA2_512_256 SHOULD be implemented as a future replacement of 
+        AUTH_HMAC_SHA2_256_128 or when stronger security is required. This value has been preferred
+        to AUTH_HMAC_SHA2_384, as the overhead of AUTH_HMAC_SHA2_512 is negligible.</t>
 
 
         
@@ -517,7 +517,7 @@ MAY            NULL [RFC4303]
           <ttcol align="left">Name</ttcol>
           <ttcol align="left">Status</ttcol>
           <ttcol align="left">Comment</ttcol>
-          <c>IPCOMP_OUI</c><c>MUST NOT</c><c>UNSPECIFIED</c>
+          <c>IPCOMP_OUI</c><c>MUST&nbsp;NOT</c><c>UNSPECIFIED</c>
           <c>IPCOMP_DEFLATE</c><c>MAY</c><c>[RFC2393]</c>
           <c>IPCOMP_LZS</c><c>MAY</c><c>[RFC2395]</c>
           <c>IPCOMP_LZJH</c><c>MAY</c><c>[RFC3051]</c>
