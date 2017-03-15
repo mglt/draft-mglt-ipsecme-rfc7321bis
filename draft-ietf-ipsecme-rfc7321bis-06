@@ -337,7 +337,7 @@ target="RFC2119"/>.</t>
           <postamble>
           [1] - This requirement level is for 128-bit and 256-bit keys.
                 192-bit keys remain at MAY level.
-          (IoT) - This requirement is for interoperability with IoT. Only
+          (IoT) - This requirement is to interoperate with IoT devices. Only
                   128-bit keys are at the given level.
             </postamble>
         </texttable>
@@ -428,7 +428,7 @@ target="RFC2119"/>.</t>
 
 
           <postamble> 
-          (IoT) - This requirement is for interoperability with IoT 
+          (IoT) - This requirement is to interoperate with IoT devices.
             </postamble>
         </texttable>
 
@@ -484,7 +484,7 @@ target="RFC2119"/>.</t>
           <c>IPCOMP_LZS</c><c>MAY</c><c><xref target="RFC2395"/></c>
           <c>IPCOMP_LZJH</c><c>MAY</c><c><xref target="RFC3051"/></c>
           <postamble> 
-          (IoT) - This requirement is for interoperability with IoT 
+          (IoT) - This requirement is to interoperate with IoT devices.  
             </postamble>
         </texttable>
         <t>Compression was not mentioned in RFC7321. As it is not widely deployed, 
